@@ -90,7 +90,7 @@ target_include_directories(graphqlservice PRIVATE
 # You will also need to define how to build the graphqljson library target with your
 # implementation, and you should set BUILD_GRAPHQLJSON so that the test dependencies know
 # about your version of graphqljson.
-option(GRAPHQL_USE_RAPIDJSON "Use RapidJSON for JSON serialization." ON)
+option(GRAPHQL_USE_RAPIDJSON "Use RapidJSON for JSON serialization." OFF)
 
 if(GRAPHQL_USE_RAPIDJSON)
   find_package(RapidJSON CONFIG REQUIRED)
