@@ -2,7 +2,19 @@
 # Licensed under the MIT License.
 
 cmake_minimum_required(VERSION 3.8.2)
+
+include("cmake/HunterGate.cmake")
+HunterGate(
+    URL "https://github.com/ruslo/hunter/archive/v0.23.209.tar.gz"
+    SHA1 "4c8195aa5407b54abed39f2e7b18d02caca278ca"
+    LOCAL
+)
+
 project(cppgraphqlgen VERSION 3.0.0)
+
+hunter_add_package(Boost COMPONENTS system filesystem program_options)
+hunter_add_package(pegtl)
+hunter_add_package(GTest)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -26,7 +38,8 @@ endfunction()
 
 find_package(Threads MODULE REQUIRED)
 
-find_package(pegtl 3.0.0 QUIET CONFIG)
+find_package(pegtl CONFIG)
+#find_package(pegtl 3.0.0 QUIET CONFIG)
 if(NOT pegtl_FOUND)
   # If a compatible version of PEGTL is not already installed, build and install it from the submodule directory.
   set(PEGTL_BUILD_TESTS OFF CACHE BOOL "Disable PEGTL tests")
